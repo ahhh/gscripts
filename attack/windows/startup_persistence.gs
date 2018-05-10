@@ -34,7 +34,7 @@ function Deploy() {
 
   // Execute the sample
   //ForkExecuteCommand("powershell", ["-NoLogo", "-WindowStyle", "hidden", "-ep", "bypass", fn]);
-  LogInfo("executed the example binary");
+  //LogInfo("executed the example binary");
   return true;
 }
 
