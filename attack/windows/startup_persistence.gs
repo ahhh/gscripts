@@ -2,6 +2,7 @@
 // Title: Startup Persistence
 // Author: ahhh
 // Purpose: Drop a sample binary and persist it using a script in the Startup folder
+// Gscript version: 0.1.1
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1060
 
 //priority:90

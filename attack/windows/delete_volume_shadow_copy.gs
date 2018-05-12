@@ -2,6 +2,7 @@
 // Title: Delete Volume Shadow Copy
 // Author: ahhh
 // Purpose: Deletes the volume shadow copy with both wmic and vssadmin
+// Gscript version: 0.1.1
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1107
 
 //priority:100

@@ -2,6 +2,7 @@
 // Title: Net User Creation
 // Author: ahhh
 // Purpose: add a local user, domain user, add them to local administrators and domain administrators groups
+// Gscript version: 0.1.1
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1136
 
 //priority:100
