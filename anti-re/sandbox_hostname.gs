@@ -12,7 +12,7 @@ function BeforeDeploy() {
   LogInfo("Testing Sandbox Hostname!");
   var obj = GetHost();
   var host = (obj.hostname).toUpperCase();
-  LogInfo(host);
+  LogInfo("Our hostname is: "+ host);
   if (host == "TEQUILABOOMBOOM" || host == "SANDBOX" || host == "VIRUS" || host == "MALWARE" || host == "MALTEST" || host == "PC") 
   {
     LogInfo("Sandbox detected, exiting");
