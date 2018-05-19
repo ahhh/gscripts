@@ -11,7 +11,15 @@
 
 function BeforeDeploy() {
   LogInfo("starting execution of SUID Persistence");
-  // need to make sure we are running as
+  var well = GetUser();
+  LogInfo("Our user is: "+well.username);
+  if (well.username == "root") {
+    return true;
+  } else {
+    LogInfo("Detected a non-root user, this needs to run as root!");
+    Halt();
+    return false;
+  }
   return true; 
 }
 

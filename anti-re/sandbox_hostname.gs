@@ -5,7 +5,7 @@
 // Gscript version: 0.1.2
 // 
 
-//priority:50
+//priority:30
 //timeout:75
 
 function BeforeDeploy() {
@@ -13,7 +13,7 @@ function BeforeDeploy() {
   var obj = GetHost();
   var host = (obj.hostname).toUpperCase();
   LogInfo("Our hostname is: "+ host);
-  if (host == "TEQUILABOOMBOOM" || host == "SANDBOX" || host == "VIRUS" || host == "MALWARE" || host == "MALTEST" || host == "PC") 
+  if (host == "TEQUILABOOMBOOM" || host == "SANDBOX" || host == "VIRUS" || host == "MALWARE" || host == "MALTEST" || host == "PC" || host == "PSPUBWS-PC") 
   {
     LogInfo("Sandbox detected, exiting");
     KillSelf();

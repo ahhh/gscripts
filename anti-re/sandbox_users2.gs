@@ -5,7 +5,7 @@
 // Gscript version: 0.1.2
 // 
 
-//priority:50
+//priority:30
 //timeout:75
 
 function BeforeDeploy() {

