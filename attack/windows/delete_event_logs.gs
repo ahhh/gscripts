@@ -14,9 +14,9 @@ function BeforeDeploy() {
 }
 
 function Deploy() {  
-  ForkExecuteCommand("powershell.exe", ["Clear-EventLog", "Security", "Application", "System"]);
-  ForkExecuteCommand("powershell.exe", ["Clear-EventLog", "Windows", "PowerShell"]);
-  ForkExecuteCommand("powershell.exe", ["Clear-EventLog", "Sysmon"]);
+  ExecuteCommand("powershell.exe", ["Clear-EventLog", "Security", "Application", "System"]);
+  ExecuteCommand("powershell.exe", ["Clear-EventLog", "Windows", "PowerShell"]);
+  ExecuteCommand("powershell.exe", ["Clear-EventLog", "Sysmon"]);
   LogInfo("Cleared Event Logs");
   return true;
 }
