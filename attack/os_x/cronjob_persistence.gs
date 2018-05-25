@@ -3,7 +3,7 @@
 // Author: Jay Hill
 // Purpose: cron job persistence on osx
 // Gscript version: 0.1.0
-// ATT&CK: https://attackerkb.com/Unix/LinuxUnixBSD_Post_Exploitation
+// ATT&CK: https://attack.mitre.org/wiki/Technique/T1168
 
 //priority:150
 //timeout:150
