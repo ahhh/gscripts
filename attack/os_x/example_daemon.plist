@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.apple.updatesd</string>
+	<key>UserName</key>
+	<string>root</string>
+	<key>GroupName</key>
+	<string>wheel</string>
+	<key>Nice</key>
+	<integer>20</integer>
+	<key>KeepAlive</key>
+	<true/>
+	<key>OnDemand</key>
+	<false/>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>AbandonProcessGroup</key>
+	<true/>
+	<key>WorkingDirectory</key>
+	<string>/private/tmp/</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/private/tmp/daemon_example</string>
+	</array>
+	<key>StandardErrorPath</key>
+	<string>/Library/Logs/error.log</string>
+	<key>StandardOutPath</key>
+	<string>/Library/Logs/output.log</string>
+	<key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>
