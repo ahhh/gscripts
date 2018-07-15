@@ -6,7 +6,7 @@
     <string>com.apple.updates</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/private/tmp/agent_example</string>
+      <string>/usr/local/agent_example</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

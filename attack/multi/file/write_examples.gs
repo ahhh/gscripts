@@ -54,5 +54,9 @@ function Deploy() {
     console.log("errors: "+ readFile[1]);
     console.log("example_test3 contains:\n"+readFile[0]);
 
+    console.log("Testing CheckExists");
+    var exists = G.file.CheckExists("example_test");
+    console.log("Does it: "+exists);
+
     return true;
 }

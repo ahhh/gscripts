@@ -25,8 +25,8 @@ function Deploy() {
 
     // Getting a random string
     var temppath = os2.TempDir();
-    //var naming = G.rand.GetAlphaString(4);
-    var naming = "aOKware";
+    var naming = G.rand.GetAlphaString(4);
+    //var naming = "aOKware";
     naming = naming.toLowerCase();
     
     // Determine OS

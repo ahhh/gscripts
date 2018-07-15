@@ -19,10 +19,10 @@
 	<key>AbandonProcessGroup</key>
 	<true/>
 	<key>WorkingDirectory</key>
-	<string>/private/tmp/</string>
+	<string>/usr/local/</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/private/tmp/daemon_example</string>
+		<string>/usr/local/daemon_example</string>
 	</array>
 	<key>StandardErrorPath</key>
 	<string>/Library/Logs/error.log</string>

