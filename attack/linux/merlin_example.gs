@@ -7,6 +7,7 @@
 
 //priority:150
 //timeout:150
+
 //import:/private/tmp/merlinagent.elf
 
 //go_import:os as os
