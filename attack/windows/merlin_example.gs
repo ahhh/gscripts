@@ -23,7 +23,7 @@ function Deploy() {
     var naming = G.rand.GetAlphaString(4);
     //var naming = "blabla";
     naming = naming.toLowerCase();
-    var fullpath = temppath+naming+".exe";
+    var fullpath = temppath+"//"+naming+".exe";
     console.log("file name: "+ fullpath);
 
     errors = G.file.WriteFileFromBytes(fullpath, merlinBin[0]);

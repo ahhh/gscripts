@@ -10,7 +10,7 @@
 
 function Deploy() {
 
-    var headers = {"User-Agent": "spaceman"};
+    var headers = {"User-Agent" : "spaceman"};
 
     console.log("Starting GetURLAsString");
     out1 = G.requests.GetURLAsString("http://127.0.0.1:8000", headers, true);
