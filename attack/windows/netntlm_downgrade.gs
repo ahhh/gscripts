@@ -4,6 +4,7 @@
 // Purpose: Force LM and NT hashes during SMB auth
 // Gscript version: 1.0.0
 // ATT&CK: 
+// Notes: Works in conjunction with smb relying https://attack.mitre.org/wiki/Technique/T1187
 
 //priority:90
 //timeout:150

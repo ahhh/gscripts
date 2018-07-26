@@ -3,7 +3,7 @@
 // Author: ahhh
 // Purpose: Forces Hidden Files on Windows
 // Gscript version: 1.0.0
-// ATT&CK: 
+// ATT&CK: https://attack.mitre.org/wiki/Technique/T1158#Windows
 
 //priority:90
 //timeout:150

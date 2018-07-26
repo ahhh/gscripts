@@ -3,7 +3,7 @@
 // Author: ahhh
 // Purpose: This will disable the local admin filter
 // Gscript version: 1.0.0
-// ATT&CK: 
+// ATT&CK: https://attack.mitre.org/wiki/Technique/T1089
 
 //priority:90
 //timeout:150
