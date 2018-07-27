@@ -5,7 +5,7 @@
 // Gscript version: 1.0.0
 // ATT&CK: 
 
-//priority:90
+//priority:93
 //timeout:150
 
 //go_import:os as os

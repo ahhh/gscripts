@@ -6,7 +6,7 @@
 // ATT&CK: 
 // Notes: Works in conjunction with smb relying https://attack.mitre.org/wiki/Technique/T1187
 
-//priority:90
+//priority:97
 //timeout:150
 
 //go_import:github.com/gen0cide/gscript/x/windows as windows
