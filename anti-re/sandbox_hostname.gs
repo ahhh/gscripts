@@ -11,8 +11,8 @@
 
 function Deploy() {  
     console.log("Testing Sandbox Hostname!");
-    var hostnamez = os2.Hostname();
-    hostnamez = hostnamez.toUpperCase();
+    var hostnam = os2.Hostname();
+    var hostnamez = hostnam[0].toUpperCase();
     console.log("Our hostname is: "+ hostnamez);
     if (hostnamez == "TEQUILABOOMBOOM" || hostnamez == "SANDBOX" || hostnamez == "VIRUS" || hostnamez == "MALWARE" || hostnamez == "MALTEST" || hostnamez == "PC" || hostnamez == "PSPUBWS-PC") 
     {

@@ -5,7 +5,7 @@
 // Gscript version: 1.0.0
 // ATT&CK: https://attack.mitre.org/wiki/Technique/T1088
 
-//priority:90
+//priority:92
 //timeout:150
 
 //go_import:github.com/gen0cide/gscript/x/windows as windows
