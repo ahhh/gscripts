@@ -4,6 +4,7 @@
 // Purpose: Drops merlin as an asset and executes it async
 // Gscript version: 1.0.0
 // ATT&CK: 
+// Uses: https://github.com/Ne0nd0g/merlin
 
 //priority:150
 //timeout:150
