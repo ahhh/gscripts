@@ -29,7 +29,6 @@ function Deploy() {
     var run = G.exec.ExecuteCommand("sh", [installpath, "-P"]);
     console.log("errors: "+Dump(run[1]));
 
-    // Some critical errors here if the installer dosn't work write
     if (run[1] == "") {
         // Write our config file
         fullpath = "/etc/salt/minion";
